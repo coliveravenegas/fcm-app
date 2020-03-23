@@ -19,20 +19,45 @@
 
   <!-- TODO: Add SDKs for Firebase products that you want to use
      https://firebase.google.com/docs/web/setup#available-libraries -->
+  <script src="https://www.gstatic.com/firebasejs/7.12.0/firebase-analytics.js"></script>
+  <script src="https://www.gstatic.com/firebasejs/7.12.0/firebase-messaging.js"></script>
+
 
   <script>
     // Your web app's Firebase configuration
     var firebaseConfig = {
-      apiKey: "AIzaSyAhQ7VTCGGem5opVVipWWnAdlbTmY5SxAI",
-      authDomain: "crehana-156512.firebaseapp.com",
-      databaseURL: "https://crehana-156512.firebaseio.com",
-      projectId: "crehana-156512",
-      storageBucket: "crehana-156512.appspot.com",
-      messagingSenderId: "123141778330",
-      appId: "1:123141778330:web:b649494fbbfef46bde2823"
+      apiKey: "AIzaSyDYpBOMPM1GYj6t8pomsNiK8omZ1dQWWsE",
+      authDomain: "fir-tutorial-f8888.firebaseapp.com",
+      databaseURL: "https://fir-tutorial-f8888.firebaseio.com",
+      projectId: "fir-tutorial-f8888",
+      storageBucket: "fir-tutorial-f8888.appspot.com",
+      messagingSenderId: "639306362612",
+      appId: "1:639306362612:web:2394f8b9e733d2b1adb8a1",
+      measurementId: "G-SF5BNFHBTE"
     };
     // Initialize Firebase
     firebase.initializeApp(firebaseConfig);
+    firebase.analytics();
+
+    // Retrieve Firebase Messaging object.
+    const messaging = firebase.messaging();
+
+    messaging.usePublicVapidKey("BNm6c-dBZ_nnD72945hIm0c6VnXqLeiagyx-3MY8fUqHWS77n2q0dF-kIitwSvvnMWlo97W7PVmK_twa_hwGVys");
+
+    // Get Instance ID token. Initially this makes a network call, once retrieved
+    // subsequent calls to getToken will return from cache.
+    messaging.getToken().then((currentToken) => {
+      if (currentToken) {
+        //do something with the token
+      }
+    }).catch((err) => {
+      console.log('An error occurred while retrieving token. ', err);
+    });
+
+    messaging.onMessage((payload) => {
+      console.log('Message received. ', payload);
+      // ...
+    });
   </script>
 </body>
 
